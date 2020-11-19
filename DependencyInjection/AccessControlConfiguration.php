@@ -36,8 +36,8 @@ class AccessControlConfiguration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $tb = new TreeBuilder();
-        $rootNode = $tb->root('security');
+        $tb = new TreeBuilder('security');
+        $rootNode = $tb->getRootNode();
 
         $rootNode
             ->ignoreExtraKeys()

@@ -25,9 +25,9 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $tb = new TreeBuilder();
+        $tb = new TreeBuilder('jms_security_extra');
         $tb
-            ->root('jms_security_extra')
+            ->getRootNode()
                 ->validate()
                     ->always(function($v) {
                         if ($v['method_access_control'] && !$v['expressions']) {
