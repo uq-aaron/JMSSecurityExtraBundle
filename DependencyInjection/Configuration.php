@@ -38,6 +38,7 @@ class Configuration implements ConfigurationInterface
                     })
                 ->end()
                 ->fixXmlConfig('iddqd_alias', 'iddqd_aliases')
+                ->ignoreExtraKeys()
                 ->children()
                     ->arrayNode('iddqd_aliases')
                         ->performNoDeepMerging()

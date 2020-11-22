@@ -6,8 +6,10 @@ use JMS\SecurityExtraBundle\Security\Authorization\Expression\Expression;
 use JMS\SecurityExtraBundle\Exception\InvalidArgumentException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class SecurityExtension extends \Twig_Extension
+class SecurityExtension extends AbstractExtension
 {
     private $authorizationChecker;
 
@@ -26,7 +28,7 @@ class SecurityExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('is_expr_granted', array($this, 'isExprGranted')),
+            new TwigFunction('is_expr_granted', array($this, 'isExprGranted')),
         );
     }
 
