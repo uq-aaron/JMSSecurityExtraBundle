@@ -20,7 +20,7 @@ namespace JMS\SecurityExtraBundle\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Bundle\SecurityBundle\DependencyInjection\SecurityExtension as BaseSecurityExtension;
-use Symfony\Component\DependencyInjection\DefinitionDecorator;
+use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
@@ -107,9 +107,9 @@ class SecurityExtension extends Extension
             if (isset($access['roles'])) {
                 $attributes = $access['roles'];
             } else {
-                $def = new DefinitionDecorator('security.expressions.expression');
+                $def = new ChildDefinition('security.expressions.expression');
                 $def->addArgument($access['access']);
-                $container->setDefinition($exprId = 'security.expressions.expression.'.sha1($access['access']), $def);
+                $container->setDefinition($exprId = 'security.expressions.expression.' . sha1($access['access']), $def);
 
                 $attributes = array(new Reference($exprId));
             }
