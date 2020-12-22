@@ -89,9 +89,11 @@ class SecurityExtension extends Extension
             return;
         }
 
-        $this->addClassesToCompile(array(
-            'Symfony\\Component\\Security\\Http\\AccessMap',
-        ));
+        if (PHP_VERSION_ID < 70000) {
+            $this->addClassesToCompile(array(
+                'Symfony\\Component\\Security\\Http\\AccessMap',
+            ));
+        }
 
         foreach ($config['access_control'] as $access) {
             $matcher = $this->invokeParent('createRequestMatcher', array(
