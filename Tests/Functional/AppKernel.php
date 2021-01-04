@@ -2,7 +2,29 @@
 
 namespace JMS\SecurityExtraBundle\Tests\Functional;
 
-require_once __DIR__.'/../../vendor/autoload.php';
+// get the autoload file
+$dir = __DIR__;
+$lastDir = null;
+while ($dir !== $lastDir) {
+    $lastDir = $dir;
+
+    if (file_exists($dir.'/autoload.php')) {
+        require_once $dir.'/autoload.php';
+        break;
+    }
+
+    if (file_exists($dir.'/autoload.php.dist')) {
+        require_once $dir.'/autoload.php.dist';
+        break;
+    }
+
+    if (file_exists($dir.'/vendor/autoload.php')) {
+        require_once $dir.'/vendor/autoload.php';
+        break;
+    }
+
+    $dir = dirname($dir);
+}
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Symfony\Bundle\SecurityBundle\Tests\Functional\Bundle\FormLoginBundle\FormLoginBundle;
