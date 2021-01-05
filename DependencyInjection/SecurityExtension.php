@@ -100,7 +100,8 @@ class SecurityExtension extends Extension
                 $container,
                 $access['path'],
                 $access['host'],
-                count($access['methods']) === 0 ? null : $access['methods'],
+                $access['port'] ?? null,
+                count($access['methods']) === 0 ? [] : $access['methods'],
                 $access['ips']
             ));
 
